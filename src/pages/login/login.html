@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle ><ion-icon name="menu"></ion-icon></button>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+  <div class="progress" *ngIf="API.Gv.G_Running"><div class="indeterminate"></div></div>
+</ion-header>
+
+<ion-content>
+      <div class="login-form">
+          <form>
+              <label>Email *</label>
+              <input type="text" placeholder="Name or E-mail" [(ngModel)]="email" name="email" />
+              <label>Password *</label>
+              <input type="password" placeholder="Password" [(ngModel)]="password" name="password"/>
+              <label class="lost-password" (click)="navCtrl.push(ForgotPasswordPage)"><a href="javascript:void(0)">Lost your password ?</a></label>
+              <!-- <div class="checkbox checkbox-primary">
+                  <input id="checkbox1" type="checkbox" style="display: none;">
+                  <label for="checkbox1">Remember Me</label>
+              </div> -->
+                <button class="default-big-btn fullwidth" type="submit" (click)="Login()">Login</button>
+                  <hr style="background-color: rgba(0, 0, 0, 0.3)"/>
+                    One Click Login :
+                  <br>
+                  <br>
+                  <div class="fullwidth" style="margin-bottom: 15px;">
+                    <button class="btn btn-default fb social-btn" type="submit" (click)="LoginFB()" > <i class="fa fa-facebook fa-fw"></i> Facebook</button>
+                    <!-- <button class="btn btn-default twitter social-btn" type="submit" (click)="SocialLogin('twitter')"> <i class="fa fa-twitter fa-fw"></i>  Twitter</button> -->
+                    <button class="btn btn-default google social-btn" type="submit" (click)="LoginGo()"> <i class="fa fa-google fa-fw"></i>  Google+</button>
+                  </div>
+              <!-- <label class="lost-password" style="text-align: center;" (click)="navCtrl.push(RegisterPage)"><a > Create New Account</a></label> -->
+          </form>
+      </div>
+</ion-content>

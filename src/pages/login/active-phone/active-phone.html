@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Active Phone</ion-title>
+  </ion-navbar>
+  <div class="progress" *ngIf="API.Gv.G_Running"><div class="indeterminate"></div></div>
+</ion-header>
+
+<ion-content padding>
+  <div class="login-form" *ngIf="tab=='tab1'">
+    <form>
+      <input type="text" placeholder="Enter your Phone" [(ngModel)]="item.Phone" name="Phone" />
+      <button class="btn btn-info" type="submit" (click)="send()"> Send Code</button>
+    </form>
+  </div>
+  <div class="login-form" *ngIf="tab=='tab2'">
+    <form>
+      <b>check your phone no. {{item?.Phone}} </b>
+      <input type="text" placeholder="Code" [(ngModel)]="item.Code" name="Code" />
+      <button class="btn btn-default" type="submit" (click)="tab='tab1'">  Back</button>
+      <button class="btn btn-primary" type="submit" (click)="Active()">  Active </button>
+    </form>
+  </div>
+</ion-content>

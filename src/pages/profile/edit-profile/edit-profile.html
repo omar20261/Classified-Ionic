@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Edit Profile</ion-title>
+  </ion-navbar>
+  <div class="progress" *ngIf="API.Gv.G_Running"><div class="indeterminate"></div></div>
+</ion-header>
+
+
+<ion-content >
+  <div class="profile-bg" [ngStyle]="{'background-image':'url('+API.Gv.ImgPath(user?.cover,'assets/icon/img/user-profile-bg-min.jpg')+')'}">
+    <!-- <div class="uploadImg">  <ion-icon name="ios-camera"></ion-icon></div> -->
+  </div>
+  <div class="userImg">
+    <div class="Img" style="height: 100%;">
+      <app-img [item]="user" [name]="'Image'" [accept]="'image/*'" [innerBtn]="true" style="position: absolute;right:0;bottom:0;left:0" ></app-img>
+      <img [src]="API.Gv.ImgPath(user?.Image,null)||user?.SocialImg||'assets/imgs/user.svg'">
+    </div>
+  </div>
+  <div class="userInfo" padding>
+
+    <table>
+
+      <tr>
+        <td><h6 >name  </h6></td>
+        <td>
+          <ion-row style="width: 100%;margin: 0;">
+            <ion-col width-50>
+               <ion-item>
+                 <ion-input type="text" [(ngModel)]="user.Fname" name="f_name" required placeholder="first-name"></ion-input>
+               </ion-item>
+             </ion-col>
+            <ion-col width-50>
+              <ion-item>
+               <ion-input  type="text" [(ngModel)]="user.Lname" name="l_name" required placeholder="last-name"></ion-input>
+              </ion-item>
+             </ion-col>
+           </ion-row>
+       </td>
+      </tr>
+      <tr>
+        <td><h6>Email </h6></td>
+        <td>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="user.Email" name="email" required placeholder="Email"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td><h6>Phone </h6></td>
+        <td>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="user.Phone" name="Phone" required placeholder="Phone"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+
+    </table>
+    <ion-item (click)="navCtrl.push(ChangePasswordPage)" style="padding: 0">
+      <button type="button" ion-button clear name="button" >
+        <ion-icon name="md-create" style="margin:0 5px;"></ion-icon>
+        change password </button>
+    </ion-item>
+
+
+
+      <div class="row">
+        <button type="button" clear ion-button color="light" name="button" (click)="Back()">
+          Back</button>
+
+          <button type="button" ion-button name="button" (click)="Update()">
+            save</button>
+      </div>
+
+  </div>
+
+</ion-content>

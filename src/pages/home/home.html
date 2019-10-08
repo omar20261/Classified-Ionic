@@ -1,0 +1,69 @@
+<ion-header>
+<app-header></app-header>
+</ion-header>
+
+<ion-content >
+  <section class="bg-accent fixed-menu-mt featured-product-area item-pb">
+          <div class="container">
+              <div class="row featured-product-inner-area zoom-gallery">
+                  <div class="order-xl-1 order-lg-1 col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12">
+                      <div class="category-menu-layout2 bg-body">
+                          <h3>Categories</h3>
+                          <ul class="sidebar-category-list">
+                              <li *ngFor="let item of Categories">
+                                <!-- [routerLink]='["/Ads"]' [queryParams]="{Category:item._id}" -->
+                                  <a  (click)="navCtrl.push(AdsListPage,{Item: item})"><img [src]="API.Gv.ImgPath(item.Icon,'assets/img/product/ctg1.png')" alt="category" class="img-fluid">{{item.name}}
+                                    <!-- <span *ngIf="item.ads">( {{item.ads}} )</span> -->
+                                    <i class="fa fa-angle-right" style="float: right;padding: 5px;font-size: 20px;"></i>
+                                  </a>
+                              </li>
+                              <li *ngIf="API.Gv.G_Running && (!Categories||Categories?.length == 0)">
+                                <div class="row"  >
+                                  <div class="lds-ring" style="margin: auto;"><div></div><div></div><div></div><div></div></div>
+                                </div>
+                              </li>
+                              <li *ngIf="Categories?.length == 0 && !API.Gv.G_Running">
+                                <p class="NoItemsFound" style="margin: 0;padding: 10px;">no items found</p>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <!-- Featured Area End Here -->
+      <!-- Add Area Start Here -->
+    <section class="bg-accent">
+        <div class="container">
+            <div class="row no-gutters text-center-mb">
+                <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="add-layout1-left d-flex align-items-center justify-content-center">
+                        <h2>Do you Have Something To Sell?</h2>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-12">
+                  <div class="add-layout2-right d-flex align-items-center justify-content-end mb--sm">
+                      <a href="javascript:void(0)" (click)="navCtrl.push(PostAdPage)" class="cp-default-btn-sm-primary">Post Your Ad Now!</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Add Area End Here -->
+    <!-- Products Area Start Here -->
+    <section class="bg-accent s-space-custom4">
+        <div class="container">
+            <div class="section-title-left-dark title-bar mb-40">
+                <h2>Recently Added</h2>
+            </div>
+            <div class="row category-grid-layout2 zoom-gallery">
+                <div  *ngFor="let item of items">
+                    <product [item]="item"></product>
+                </div>
+                <div *ngIf="API.Gv.G_Running && (!items||items?.length == 0)" class="lds-ring" style="margin: auto;"><div></div><div></div><div></div><div></div></div>
+                <p *ngIf="items?.length == 0&& !API.Gv.G_Running" class="NoItemsFound" style="margin: 0;padding: 10px;width: 100%;">No Items Found</p>
+            </div>
+        </div>
+    </section>
+
+</ion-content>

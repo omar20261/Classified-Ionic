@@ -1,0 +1,103 @@
+
+<div class="lds-ripple" *ngIf="API.Gv.G_Running && API.Gv.uploading">
+  <svg class="spinner centerItem" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+     <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+  </svg>
+    <!-- ===== progress bar ======  -->
+      <div *ngIf="API.Gv.uploading" class="progress_container" >Uploading .. <b>% {{API.Gv.uploaded}}</b>
+          <div class="progress_bar"><div [ngStyle]="{'width':API.Gv.uploaded+'%'}"></div></div>
+      </div>
+      <!-- =======================  -->
+ </div>
+ <!-- ===================================================================================================================  -->
+ <ion-menu [content]="content" class="grean-theme">
+  <ion-header>
+    <ion-toolbar text-center>
+      <ion-title>menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <!-- <ion-item menuClose>
+
+        <div class="userIcon" *ngIf="API.Auth.loadUser()?._id" (click)="openPage(ProfilePage)">
+          <div class="Img">
+            <img [src]="API.Gv.ImgPath(API.Auth.loadUser()?.Image,null)||API.Auth.loadUser()?.SocialImg||'assets/icon/img/user.svg'">
+          </div>
+          <h6 text-center>{{API.Auth.loadUser()?.Fname}} {{API.Auth.loadUser()?.Lname}}</h6>
+        </div>
+
+        <ion-row justify-content-center *ngIf="!API.Auth.loadUser()?._id" >
+          <button ion-button round block  (click)="nav.push(LoginPage)"> login / signup </button>
+        </ion-row>
+
+      </ion-item> -->
+
+      <ion-item no-lines menuClose (click)="openPage(HomePage)">
+        <img item-start src="assets/imgs/home.svg" alt="" width="20px">
+        <!-- <ion-icon small item-start name="ios-home" style="font-size: 20px"></ion-icon> -->
+        <div item-start>Home</div>
+      </ion-item>
+
+      <!-- <ion-item no-lines menuClose (click)="openPage(SearchPage)" no-lines>
+        <ion-icon small item-start name="ios-search" style="font-size: 20px"></ion-icon>
+        <div item-start>search</div>
+      </ion-item> -->
+
+      <ion-item no-lines menuClose (click)="openPage(PostAdPage)">
+        <!-- <ion-icon small item-start md="md-person" style="font-size: 20px"></ion-icon> -->
+        <img item-start src="assets/imgs/marketing2.svg" alt="" width="20px">
+        <div item-start>Post Ad</div>
+      </ion-item>
+
+      <ion-item no-lines menuClose *ngIf="API.Auth.loadUser()?._id" (click)="openPage(ProfilePage)">
+        <!-- <ion-icon small item-start md="md-person" style="font-size: 20px"></ion-icon> -->
+        <img item-start src="assets/imgs/profile.svg" alt="" width="20px">
+        <div item-start>Profile</div>
+      </ion-item>
+
+      <ion-item no-lines menuClose *ngIf="API.Auth.loadUser()?._id" (click)="openPage(MyAdsPage)">
+        <!-- <ion-icon small item-start md="md-megaphone" style="font-size: 20px"></ion-icon> -->
+        <img item-start src="assets/imgs/megaphone.svg" alt="" width="20px">
+        <div item-start>My Ads</div>
+      </ion-item>
+
+      <ion-item no-lines menuClose *ngIf="API.Auth.loadUser()?._id" (click)="openPage(MyFavAdsPage)">
+        <img item-start src="assets/imgs/star.svg" alt="" width="20px">
+        <div item-start>Saved Ads</div>
+      </ion-item>
+
+      <!-- <ion-item no-lines menuClose (click)="openPage(AboutPage)">
+        <img item-start src="assets/imgs/group.svg" alt="" width="20px">
+        <div item-start>Who We Are</div>
+      </ion-item> -->
+
+      <ion-item no-lines menuClose (click)="openPage(HowItWorksPage)">
+        <img item-start src="assets/imgs/information.svg" alt="" width="20px">
+        <!-- <ion-icon small item-start md="md-settings"></ion-icon> -->
+        <div item-start>How It Works ?</div>
+      </ion-item>
+
+      <ion-item no-lines menuClose *ngIf="API.Auth.loadUser()?._id" (click)="API.Auth.logout()">
+        <!-- <ion-icon small item-start md="md-log-out" style="font-size: 20px"></ion-icon> -->
+        <img item-start src="assets/imgs/logout.svg" alt="" width="20px">
+        <div item-start>logout</div>
+      </ion-item>
+
+      <ion-item no-lines menuClose *ngIf="!API.Auth.loadUser()?._id" (click)="openPage(LoginPage)">
+        <img item-start src="assets/imgs/sign-in.svg" alt="" width="20px">
+        <div item-start>login</div>
+      </ion-item>
+
+      <ion-item no-lines menuClose *ngIf="!API.Auth.loadUser()?._id" (click)="openPage(RegisterPage)">
+        <img item-start src="assets/imgs/register.svg" alt="" width="20px">
+        <div item-start>Register</div>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content class="grean-theme"></ion-nav>

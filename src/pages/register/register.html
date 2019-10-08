@@ -1,0 +1,44 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle ><ion-icon name="menu"></ion-icon></button>
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+  <div class="progress" *ngIf="API.Gv.G_Running"><div class="indeterminate"></div></div>
+</ion-header>
+
+<ion-content >
+    <div class="login-form">
+        <form>
+          <div class="row">
+            <div class="form-group col-sm-6">
+              <label>First Name</label>
+              <input type="text" [(ngModel)]="user.Fname" name="f_name" class="form-control">
+            </div>
+            <div class="form-group col-sm-6">
+              <label>Last Name</label>
+              <input type="text" [(ngModel)]="user.Lname" name="l_name" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="text" [(ngModel)]="user.Email" name="email" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="text" [(ngModel)]="user.Phone" name="Phone" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" [(ngModel)]="user.password" name="Password" class="form-control" >
+          </div>
+          <div class="form-group">
+            <label>confirm Password</label>
+            <input type="password" [(ngModel)]="user.password2" name="Password2" class="form-control">
+          </div>
+            <div class="block fullwidth" style="margin-top: 10px;">
+              <button class="default-big-btn fullwidth" type="submit" (click)="Register()">Submit</button>
+            </div>
+          </form>
+    </div>
+</ion-content>

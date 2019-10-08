@@ -1,0 +1,61 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle ><ion-icon name="menu"></ion-icon></button>
+    <ion-title>profile</ion-title>
+  </ion-navbar>
+  <div class="progress" *ngIf="API.Gv.G_Running"><div class="indeterminate"></div></div>
+</ion-header>
+
+
+<ion-content >
+
+  <div class="profile-bg" [ngStyle]="{'background-image':'url('+API.Gv.ImgPath(user?.cover,'assets/icon/img/user-profile-bg-min.jpg')+')'}"></div>
+
+  <div class="userImg">
+    <div class="Img" style="height: 100%;">
+      <img [src]="API.Gv.ImgPath(user?.Image,null)||user?.SocialImg||'assets/imgs/user.svg'">
+    </div>
+    <!-- <div class="uploadImg">  <ion-icon name="ios-camera"></ion-icon></div> -->
+  </div>
+  <div class="userInfo" padding>
+    <ion-item style="padding: 0" (click)="navCtrl.push(EditProfilePage)">
+      <button type="button" ion-button clear name="button" >
+        <ion-icon name="md-create" style="margin:0 5px;"></ion-icon>Edit</button>
+        <!-- <ion-label> <ion-icon name="md-create"></ion-icon> Change Password</ion-label> -->
+        <!-- <ion-input clearInput type="text"></ion-input> -->
+    </ion-item>
+
+
+    <table style="width: 100%;">
+      <tr>
+        <td><p>name : </p></td>
+        <td><p>{{user?.Fname}} {{user?.Lname}}</p></td>
+      </tr>
+      <tr>
+        <td><p>Email : </p></td>
+        <td><p>{{user?.Email}}</p></td>
+      </tr>
+      <tr>
+        <td><p style="margin: 0px">Phone : </p></td>
+        <td >
+          <p style="margin: 0px" >{{user?.Phone}}
+            <i *ngIf="user?.ActivePhone" class="fa fa-check-circle" style="font-size: 20px;float: right;"></i>
+            <!-- <span>Verified</span> -->
+          </p>
+          <span *ngIf="!user?.ActivePhone"  class="ActivePhone-btn" (click)="navCtrl.push(ActivePhonePage,{Phone:user?.Phone})"> Active Your Phone !</span>
+        </td>
+      </tr>
+    </table>
+    <!-- <ion-item (click)="navCtrl.push(ChangePasswordPage)" style="padding: 0">
+      <button type="button" ion-button clear name="button" >
+        <ion-icon name="md-create" style="margin:0 5px;"></ion-icon>Change Password</button>
+    </ion-item> -->
+    <!-- <h6 class="title-section" (click)="navCtrl.push(ChangePasswordPage)">
+       <ion-label></ion-label>
+      <button type="button" ion-button clear name="button" >
+        <ion-icon name="md-create" style="margin:0 5px;"></ion-icon>Change</button>
+    </h6> -->
+  </div>
+
+</ion-content>

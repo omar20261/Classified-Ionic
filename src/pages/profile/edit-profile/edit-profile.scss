@@ -1,0 +1,20 @@
+page-edit-profile {
+  ion-content{background: white !important;}
+
+  .profile-bg{
+    background-color: rgb(21, 24, 31);
+    // background-image: url('../assets/icon/img/user-profile-bg-min.jpg');
+    height: 250px;
+  width: 100%;
+    background-size: 100% 100% !important;
+      z-index: -1;}
+  .userImg{    width: 150px;
+    margin: auto;height: 150px;
+    position: relative;    border-radius: 50%;
+    overflow: hidden;
+    top: -79px;}
+    .userImg img{background: none !important;background:url('../assets/icon/img/user.svg') !important;width: 100%;min-height: 100%;}
+    .userIcon .Img{overflow: hidden;display: inline-block;height: 100%;width: 210px;border-radius: 50%;border: 1px solid rgba(0,0,0,1);}
+    .userInfo{display: inline-block;width: 100%;position: relative;top: -75px;}
+    .userImg .uploadImg{bottom: 0;left: 0;right: 0;text-align: center;}
+}

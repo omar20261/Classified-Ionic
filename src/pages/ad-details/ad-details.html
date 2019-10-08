@@ -1,0 +1,194 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Item Details</ion-title>
+  </ion-navbar>
+  <div class="progress" *ngIf="API.Gv.G_Running"><div class="indeterminate"></div></div>
+</ion-header>
+
+
+<ion-content>
+  <section class="s-space-bottom-full bg-accent-shadow-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
+                        <div class="gradient-wrapper item-mb">
+                            <div class="gradient-title">
+                                <h2>{{item.Title}}</h2>
+                            </div>
+                            <div class="gradient-padding reduce-padding">
+                                <div class="single-product-img-layout1 item-mb">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="tab-content" >
+                                                <span class="price">{{API.Gv.currencyFormat(item.Price)}}</span>
+                                                <div *ngFor="let ItemImg of item.Images;let i =index;" role="tabpanel" class="tab-pane fade" [ngClass]="{'active show':('img'+(i+1))==selectedImg}" id="related{{i}}">
+                                                    <a href="javascript:void(0)" class="zoom ex1">
+                                                      <div class="lds-ring center"><div></div><div></div><div></div><div></div></div>
+                                                      <img alt="single" [src]="API.Gv.ImgPath(ItemImg,'assets/img/product/single-product1.jpg')+'?width=300'" class="img-fluid">
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                          <ul class="nav tab-nav tab-nav-inline cp-carousel nav-control-middle" >
+                                          <owl-carousel *ngIf="item.Images" [options]="adsOWL" [carouselClasses]="['owl-carousel','owl-theme']" style="display: inline-block;width: 100%;">
+
+                                                <li class="nav-item" *ngFor="let ItemImg of item.Images;let i =index;" (click)="selectedImg='img'+(i+1)">
+                                                      <a class="active" href="{{'#related'+(i+1)}}" data-toggle="tab" aria-expanded="false"><img alt="related1" [src]="API.Gv.ImgPath(ItemImg,'assets/img/product/single-product'+(i+1)+'.jpg')+'?width=300'" class="img-fluid"></a>
+                                                  </li>
+                                          </owl-carousel>
+                                        </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="section-title-left-dark child-size-xl title-bar item-mb">
+                                    <h3>Product Details:</h3>
+                                    <p>{{item.Description}}</p>
+                                </div>
+                                <div class="section-title-left-dark child-size-xl" *ngIf="item.Specifications?.length > 0">
+                                  <h3>Item Specifics:</h3>
+                                </div>
+                                <ul class="specification-layout1 mb-40">
+                                  <li *ngFor="let Spec of item.Specifications;let i2 =index;" class="Specifications">{{Spec.label+' : '+Spec.val}} </li>
+                                  <!-- <li *ngFor="let Spec of item.Specifications;let i2 =index;" class="Specifications">{{Spec}} </li> -->
+                                </ul>
+                                <ul class="item-actions border-top">
+                                    <li (click)="SaveAd(item._id,false)"><a href="javascript:void(0)"><i style="font-size: 16px;" class="fa fa-heart" [ngClass]="{'red':API.Gv.Favs.includes(item._id)}" aria-hidden="true"></i>Save Ad</a></li>
+                                    <!-- <li><a href="javascript:void(0)"><i class="fa fa-share-alt" aria-hidden="true"></i>Share ad</a></li>
+                                    <li class="item-danger"><a href="javascript:void(0)"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Report abuse</a></li> -->
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="gradient-wrapper item-mb">
+                            <div class="gradient-title">
+                                <h2>More Ads From This User </h2>
+                            </div>
+                            <div class="gradient-padding">
+                                <div class="cp-carousel nav-control-middle category-grid-layout1" >
+                                  <div class="row">
+                                    <p *ngIf="(!MoreAds || MoreAds.length == 0) && !API.Gv.G_Running" class="NoItemsFound" style="margin: 0;padding: 10px;">No Items Found</p>
+                                    <div *ngIf="API.Gv.G_Running && (!items||items?.length == 0)" class="lds-ring" style="margin: auto;"><div></div><div></div><div></div><div></div></div>
+                                  </div>
+
+                                  <owl-carousel *ngIf="MoreAds" [options]="ads2OWL" [carouselClasses]="['owl-carousel','owl-theme']">
+                                    <div  *ngFor="let item of MoreAds;let i =index;">
+                                      <product [item]="item"></product>
+                                    </div>
+                                  </owl-carousel>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                                <div class="add-layout2-left d-flex align-items-center">
+                                    <div>
+                                        <h2>Do you Have Something To Sell?</h2>
+                                        <!-- <h3>Post your ad on classipost.com</h3> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                                <div class="add-layout2-right d-flex align-items-center justify-content-end mb--sm">
+                                    <a href="javascript:void(0)"  (click)="navCtrl.push(PostAdPage)" class="cp-default-btn-sm-primary">Post Your Ad Now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12">
+                        <div class="sidebar-item-box">
+                            <div class="gradient-wrapper">
+                                <div class="gradient-title">
+                                    <h3>Seller Information</h3>
+                                </div>
+                                <ul class="sidebar-seller-information">
+                                    <li>
+                                        <div class="media">
+                                            <img src="assets/img/user/user1.png" alt="user" class="img-fluid pull-left">
+                                            <div class="media-body">
+                                                <span>Posted By</span>
+                                                <p>{{item.userInfo?.Name}}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="media">
+                                            <img src="assets/img/user/user2.png" alt="user" class="img-fluid pull-left">
+                                            <div class="media-body">
+                                                <span>Location</span>
+                                                <p>{{item.Location?.name}}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="media">
+                                            <img src="assets/img/user/user3.png" alt="user" class="img-fluid pull-left">
+                                            <div class="media-body">
+                                                <span>Contact Number</span>
+                                                <p>{{item.userInfo?.Phone}}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                      <div class="media">
+                                        <i class="fa fa-info-circle pull-left" style="color: blue;font-size: 30px;padding: 6px;"></i>
+                                          <div class="media-body">
+                                              <span>Status</span>
+                                              <p>{{item.type}}</p>
+                                          </div>
+                                      </div>
+                                  </li>
+                                    <li>
+                                        <div class="media">
+                                          <i class="fa fa-check-circle pull-left" style="color: green;font-size: 30px;padding: 6px;"></i>
+                                            <div class="media-body">
+                                                <span>User Type</span>
+                                                <p>Verified</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="sidebar-item-box">
+                            <div class="gradient-wrapper">
+                                <div class="gradient-title">
+                                    <h3>Item Details</h3>
+                                </div>
+                                <ul class="sidebar-item-details">
+                                    <li>Condition:<span>New</span></li>
+                                    <li>Brand:<span>Apple</span></li>
+                                    <li>Color:<span>White</span></li>
+                                    <li>Warranty:<span>1 Year</span></li>
+                                    <li>
+                                        <ul class="sidebar-social">
+                                            <li>Share:</li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="sidebar-item-box">
+                            <div class="gradient-wrapper">
+                                <div class="gradient-title">
+                                    <h3>Safety Tips for Buyers</h3>
+                                </div>
+                                <ul class="sidebar-safety-tips">
+                                    <li>Meet seller at a public place</li>
+                                    <li>Check The item before you buy</li>
+                                    <li>Pay only after collecting The item</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Product Area End Here -->
+</ion-content>

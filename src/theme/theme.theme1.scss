@@ -1,0 +1,23 @@
+.white-theme {
+  ion-content {
+    ion-card img{background:url('../assets/icon/img/image2.svg');}
+    .item,.item-input .label-md, .item-select .label-md, .item-datetime .label-md{
+      color: rgb(0, 0, 0);
+    }
+  }
+  /*----------header------------*/
+  .header button , .toolbar-title , .header ion-icon{
+    color: rgb(255, 255, 255);
+  }
+
+  .header .toolbar-background {
+    border-color: rgb(22, 59, 83);
+    background: rgb(36, 122, 176);
+  }
+/*--------menu------------*/
+  .menu-inner .header .toolbar-background {
+    border-color: rgb(36, 122, 176);
+    background: rgb(22, 59, 83);
+  }
+
+}

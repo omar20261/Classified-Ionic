@@ -1,0 +1,45 @@
+<!-- <div class="product-box item-mb zoom-gallery block fullwidth">
+    <div class="item-mask-wrapper">
+        <div class="item-mask bg-body" (click)="GoItemPage(item)">
+          <div class="lds-ring center"><div></div><div></div><div></div><div></div></div>
+          <img [src]="API.Gv.ImgPath(item.Images[0],'assets/img/product/product20.png')" class="img-fluid prod-img">
+            <div class="trending-sign" data-tips="Featured"> <i class="fa fa-bolt" aria-hidden="true"></i> </div>
+            <div class="title-ctg">{{item.Category?.name}}</div>
+            <div class="symbol-featured"><img src="assets/img/banner/symbol-featured.png" alt="symbol" class="img-fluid"> </div>
+        </div>
+    </div>
+    <div class="item-content">
+        <h3 (click)="GoItemPage(item)" class="short-title"><a >{{item.Title| strLimit:45}}</a></h3>
+        <h3 (click)="GoItemPage(item)" class="long-title"><a  >Sport Women's D'Lites Memory Foam Lace-up Sneaker</a></h3>
+        <ul class="upload-info">
+            <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>{{API.Gv.Dformat(item.createdAt)}}</li>
+            <li class="place"><i class="fa fa-map-marker" aria-hidden="true"></i>{{item.Location?.name}}</li>
+        </ul>
+        <p>{{item.Description| strLimit:150}}</p>
+        <div class="price">{{API.Gv.currencyFormat(item.Price)}}</div>
+        <a  (click)="GoItemPage(item)" class="product-details-btn">Details</a>
+    </div>
+</div> -->
+<ion-card (click)="GoItemPage(item)">
+  <div class="prod-box">
+    <div class="Img-box">
+      <div class="lds-ring center"><div></div><div></div><div></div><div></div></div>
+      <img [src]="API.Gv.ImgPath(item.Images[0],'assets/img/product/product20.png')" class="prod-img" />
+    </div>
+    <div class="Info-box">
+      <div class="title-ctg pull-left">{{item.Category?.name}}</div>
+      <div class="price pull-right">{{API.Gv.currencyFormat(item.Price)}}</div>
+
+      <p class="title pull-left"><a >{{item.Title| strLimit:70}}</a></p>
+      <ul class="upload-info pull-left">
+          <li class="date pull-left"><i class="fa fa-clock-o" aria-hidden="true"></i>{{API.Gv.Dformat(item.createdAt)}}</li>
+          <li class="place pull-left"><i class="fa fa-map-marker" aria-hidden="true"></i>{{item.Location?.name}}</li>
+      </ul>
+      <div class="prod-ctrl pull-left">
+        <button *ngIf="EditBtn" type="button" class="btn btn-primary" name="button" (click)="$event.stopPropagation();navCtrl.push(PostAdPage,{Item:item})"><img [src]="'assets/imgs/edit.svg'" /></button>
+        <button *ngIf="deleteBtn" type="button" class="btn btn-danger" name="button" (click)="$event.stopPropagation();OnCancel.emit()"><img [src]="'assets/imgs/rubbish-bin.svg'" /></button>
+        <button *ngIf="cancelBtn" type="button" class="btn btn-danger" name="button" (click)="$event.stopPropagation();OnCancel.emit()"><img [src]="'assets/imgs/cancel-music.svg'" /></button>
+      </div>
+    </div>
+  </div>
+</ion-card>

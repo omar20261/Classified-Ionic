@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{Category?.name}}</ion-title>
+  </ion-navbar>
+  <div class="progress" *ngIf="API.Gv.G_Running"><div class="indeterminate"></div></div>
+</ion-header>
+
+<ion-content>
+  <div id="category-view" class="category-grid-layout2 gradient-padding zoom-gallery">
+    <div class="row" >
+      <h3 *ngIf="items?.length == 0 && !API.Gv.G_Running" class="NoItemsFound" >No Items Found</h3>
+    </div>
+
+
+      <div class="row"  *ngIf="items.length > 0" >
+<!-- | paginate:{ itemsPerPage: PerPage,id :paginationID, currentPage:currentPage,totalItems:items_count} -->
+          <div *ngFor="let item of items;let i=index;">
+            <product [item]="item"></product>
+          </div>
+
+      </div>
+  </div>
+  <!-- <div class="gradient-wrapper mb-60" *ngIf="items_count > PerPage" >  <pagination-controls id="API_paginate" (pageChange)="PageChanged($event)"></pagination-controls> </div> -->
+  <div class="row">
+    <div  *ngIf="API.Gv.G_Running" class="lds-ring" style="margin: auto;"><div></div><div></div><div></div><div></div></div>
+    <button *ngIf="!API.Gv.G_Running && items.length < items_count && items.length != 0" ion-button block large (click)="More()">More </button>
+    <p *ngIf="!API.Gv.G_Running && items.length == items_count && items.length > 0"  class="NoItemsFound"> Ads End </p>
+  </div>
+</ion-content>

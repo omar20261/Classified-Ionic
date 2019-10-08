@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <!-- <button ion-button menuToggle ><ion-icon name="menu"></ion-icon></button>
+    <ion-title>search</ion-title> -->
+    <form (submit)="items=[];getAds(sortBy,1,false)">
+      <ion-item style="padding: 0">
+          <ion-icon item-right name="search" (click)="items=[];getAds(sortBy,1,false)"></ion-icon>
+          <ion-input autofocus clearInput type="text" [(ngModel)]="sortBy.Search" name="Search"></ion-input>
+      </ion-item>
+    </form>
+  </ion-navbar>
+  <div class="progress" *ngIf="API.Gv.G_Running"><div class="indeterminate"></div></div>
+</ion-header>
+
+<ion-content >
+  <div class="row" >
+    <h3 *ngIf="items?.length == 0 && !API.Gv.G_Running" class="NoItemsFound" >{{noSearchedYet?' lots of products are waiting for you :) ':'sorry, No Items Found'}}</h3>
+  </div>
+    <div *ngFor="let item of items">
+        <product [item]="item"></product>
+    </div>
+    <div class="row">
+      <div  *ngIf="API.Gv.G_Running" class="lds-ring" style="margin: auto;"><div></div><div></div><div></div><div></div></div>
+      <button *ngIf="!API.Gv.G_Running && items.length < items_count && items.length != 0" ion-button block large (click)="More()">More </button>
+      <p *ngIf="!API.Gv.G_Running && items.length == items_count && items.length > 0"  class="NoItemsFound"> Ads End </p>
+    </div>
+</ion-content>

@@ -1,0 +1,28 @@
+page-profile {
+  ion-content{background: white !important;}
+  .profile-bg{
+    // background-image: url('../assets/icon/img/user-profile-bg-min.jpg');
+    background-color: rgb(29, 39, 64);
+    height: 250px;
+  width: 100%;
+  background-size: 100% 100%;
+  z-index: -1;}
+  .userImg{    width: 150px; height: 150px;  background: white;
+    margin: auto;
+    position: relative;    border-radius: 50%;
+    overflow: hidden;
+    top: -79px;}
+    .userImg img{background: none !important;background:url('assets/imgs/user.svg') !important;width: 100%;min-height: 100%;}
+    .userIcon .Img{overflow: hidden;display: inline-block;height: 210px; height: 100%;width: 210px;border-radius: 50%;border: 1px solid rgba(0,0,0,1);}
+    .userInfo{display: inline-block;width: 100%;position: relative;top: -75px;}
+ 
+.uploadImg{background: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    padding: 0px 5px;color: rgb(0,0,0);
+    font-size: 21px;border: 1px solid rgba(0,0,0,0.1)}
+
+.userImg .uploadImg{bottom: 0;left: 0;right: 0;text-align: center;}
+.ActivePhone-btn{color: red;font-size: 11px;}
+.fa-check-circle{color: #1f7d5b;}
+.fa-remove{color: red;}
+}

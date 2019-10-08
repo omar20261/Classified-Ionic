@@ -1,0 +1,41 @@
+.grean-theme {
+  ion-content {
+    background: rgba(31, 125,91, 0.1);
+    color: #000;
+    ion-card img{background:url('../assets/icon/img/image2.svg');}
+    .item,.item-input .label-md, .item-select .label-md, .item-datetime .label-md{
+      color: rgb(0, 0, 0);
+    }
+  }
+
+  .header button , .toolbar-title , .header ion-icon{
+    color: rgb(255, 255, 255);
+  }
+
+  .header .toolbar-background,  .header ion-item {
+    border-color: #b2b2b2;
+    background: rgba(31, 125,91, 1);
+  }
+   .header ion-item .item-inner{
+        border-bottom-color:rgb(255, 255, 255);
+  }
+   ion-menu .toolbar-background {
+    background: rgba(31, 125,91, 1);
+    border-color: #b2b2b2;
+  }
+
+
+  .button{
+    background: rgba(31, 125,91,1);
+    border-color: rgba(31, 125,91,0.5);
+    color: rgba(255,255, 255,1);
+  }
+  .button-clear-md{
+    color: rgba(31, 125,91,1);
+    background:transparent;
+  }
+  .button-clear-md-primary{
+    color: #488aff;
+    background-color: transparent;
+  }
+}
